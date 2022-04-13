@@ -1,21 +1,23 @@
 package com.bridgelabz.cabinvoicegenerator;
 
-
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.Assert;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 
 class CabInvoiceGeneratorTest {
+	CabInvoiceGenerator inVoiceGenerator = null;
+	private InVoiceSummary fare;
+
+	@Before
+	public void setUp() {
+		inVoiceGenerator = new CabInvoiceGenerator();
+	}
 
 	@Test
-	void given_DistanceAndTime_ShouldReturnTotalFare() {
-		CabInvoiceGenerator CalculateFare = new CabInvoiceGenerator();
-		int distance = 5, time = 20;
-		double fare = CalculateFare.calculateFare(distance, time);
-		Assertions.assertEquals(70, fare);
-
+	public void givenUserId_ShouldReturnInvoiceSummary() {
+		InVoiceSummary inVoiceSummary1 = inVoiceGenerator.getInvoice(1);
+		InVoiceSummary expectedInvoices = new InVoiceSummary(2, 30);
+		Assert.assertEquals(expectedInvoices.getInvoiceSummary(), inVoiceSummary1.getInvoiceSummary());
 	}
 
 }
