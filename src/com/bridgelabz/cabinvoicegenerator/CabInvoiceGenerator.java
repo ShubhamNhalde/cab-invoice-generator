@@ -1,25 +1,18 @@
 package com.bridgelabz.cabinvoicegenerator;
 
 /**
- * Purpose : Given distance and time, the invoice generator should return the
- * total fare for the journey.
+ * Purpose : The invoice generator should now take in multiple rides, and
+ * calculate aggregate total for all
  * 
  * @author ShubhamNhalde
  * @since 13/04/2022
  *
  */
+public class CabInvoiceGenerator {
 
-public class CalculateFare {
-	// Defining global Variable
 	final int COSTPERKM = 10;
 	final int COSTPERMIN = 1;
 	final int MINFARE = 5;
-
-	// Main method to calculate fare by giving distance and time
-	public static void main(String[] args) {
-		CalculateFare cabInvoiceGenerator = new CalculateFare();
-		System.out.println(cabInvoiceGenerator.calculateFare(5, 20) + " Rs");
-	}
 
 	// Method to calculate fare should return the total fare of the journey
 	public double calculateFare(double distance, double time) {
@@ -28,6 +21,15 @@ public class CalculateFare {
 			return fare;
 		else
 			return MINFARE;
+	}
+
+//Metod to calculate fare for multiple rides and should return the TotalFare
+	public double calculateFareForMultipleRides(Ride[] ridesArray) {
+		double totalFare = 0;
+		for (Ride ride : ridesArray) {
+			totalFare += calculateFare(ride.distance, ride.time);
+		}
+		return totalFare;
 	}
 
 }
